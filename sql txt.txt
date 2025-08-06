@@ -1,0 +1,418 @@
+
+SQL> CREATE TABLE DONAR(DONAR_ID VARCHAR(10),NAME VARCHAR(20),EMAIL VARCHAR(30),PHONE INT,ADDRESS VARCHAR(10),DONAR_TYPE VARCHAR(20));
+
+Table created.
+
+SQL>
+SQL>  INSERT INTO DONAR VALUES(42521,'KAYA','KAYASU@GMAIL.COM',1234567890,'JAIPUR','INDIVIDUAL');
+
+1 row created.
+
+SQL> INSERT INTO DONAR VALUES(89061,'MAYA','MAYAKA@GMAIL.COM',0987456321,'THENKASI','ORGANIZATION');
+
+1 row created.
+
+SQL>  INSERT INTO DONAR VALUES(56321,'TEJA','TEJAMA@GMAIL.COM',9942279529,'POLLACHI','INDIVIDUAL');
+
+1 row created.
+
+SQL> INSERT INTO DONAR VALUES(78965,'MONICA','MONICARA@GMAIL.COM',5612389740,'COIMBATORE','ORGANIZATION');
+
+1 row created.
+
+SQL> INSERT INTO DONAR VALUES(89663,'KANYA','KANYASA@GMAIL.COM',2569874310,'MANGLORE','ORGANIZATION');
+
+1 row created.
+
+SQL> SELECT*FROM DONAR;
+
+DONAR_ID   NAME                 EMAIL                               PHONE
+---------- -------------------- ------------------------------ ----------
+ADDRESS    DONAR_TYPE
+---------- --------------------
+42521      KAYA                 KAYASU@GMAIL.COM               1234567890
+JAIPUR     INDIVIDUAL
+
+89061      MAYA                 MAYAKA@GMAIL.COM                987456321
+THENKASI   ORGANIZATION
+
+56321      TEJA                 TEJAMA@GMAIL.COM               9942279529
+POLLACHI   INDIVIDUAL
+
+
+DONAR_ID   NAME                 EMAIL                               PHONE
+---------- -------------------- ------------------------------ ----------
+ADDRESS    DONAR_TYPE
+---------- --------------------
+78965      MONICA               MONICARA@GMAIL.COM             5612389740
+COIMBATORE ORGANIZATION
+
+89663      KANYA                KANYASA@GMAIL.COM              2569874310
+MANGLORE   ORGANIZATION
+
+
+SQL> ALTER TABLE Employee ADD Phone VARCHAR(15);
+
+Table altered.
+
+SQL> TABLE ALTERED
+SP2-0734: unknown command beginning "TABLE ALTE..." - rest of line ignored.
+SQL> UPDATE DONAR  SET ADDRESS = 'Delhi'  WHERE DONAR_ID = 42521;
+
+1 row updated.
+
+SQL> UPDATE DONAR  SET PHONE = 9876543210  WHERE DONAR_ID = 42521;
+
+1 row updated.
+
+SQL> UPDATE DONAR  SET DONAR_TYPE = 'Individual'  WHERE ADDRESS = 'POLLACHI';
+
+1 row updated.
+
+SQL> SELECT NAME, EMAIL  FROM DONAR  WHERE DONAR_ID = 89663;
+
+NAME                 EMAIL
+-------------------- ------------------------------
+KANYA                KANYASA@GMAIL.COM
+
+SQL> SELECT *  FROM DONAR  WHERE DONAR_TYPE = 'ORGANIZATION';
+
+DONAR_ID   NAME                 EMAIL                               PHONE
+---------- -------------------- ------------------------------ ----------
+ADDRESS    DONAR_TYPE
+---------- --------------------
+89061      MAYA                 MAYAKA@GMAIL.COM                987456321
+THENKASI   ORGANIZATION
+
+78965      MONICA               MONICARA@GMAIL.COM             5612389740
+COIMBATORE ORGANIZATION
+
+89663      KANYA                KANYASA@GMAIL.COM              2569874310
+MANGLORE   ORGANIZATION
+
+
+SQL> SELECT *  FROM DONAR  WHERE ADDRESS = 'COIMBATORE';
+
+DONAR_ID   NAME                 EMAIL                               PHONE
+---------- -------------------- ------------------------------ ----------
+ADDRESS    DONAR_TYPE
+---------- --------------------
+78965      MONICA               MONICARA@GMAIL.COM             5612389740
+COIMBATORE ORGANIZATION
+
+
+SQL> SELECT d.DONAR_ID, d.NAME, n.DONATION_ID, n.AMOUNT
+  2  FROM DONAR d
+  3  LEFT JOIN DONATION n
+  4  ON d.DONAR_ID = n.DONAR_ID;
+LEFT JOIN DONATION n
+          *
+ERROR at line 3:
+ORA-00942: table or view does not exist
+
+
+SQL> CREATE TABLE RESOURCES(RESOURCE_ID VARCHAR(30), NAME VARCHAR(20), QUANTITY INT,UNIT VARCHAR(20), LAST _UPDATE VARCHAR(20), DESCRIPTION VARCHAR(28));
+CREATE TABLE RESOURCES(RESOURCE_ID VARCHAR(30), NAME VARCHAR(20), QUANTITY INT,UNIT VARCHAR(20), LAST _UPDATE VARCHAR(20), DESCRIPTION VARCHAR(28))
+                                                                                                      *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> CREATE TABLE RESOURCES(RESOURCE_ID VARCHAR(30), NAME VARCHAR(20), QUANTITY INT,UNIT VARCHAR(20), LAST _UPDATE VARCHAR(20), DESCRIPTION VARCHAR(28));
+CREATE TABLE RESOURCES(RESOURCE_ID VARCHAR(30), NAME VARCHAR(20), QUANTITY INT,UNIT VARCHAR(20), LAST _UPDATE VARCHAR(20), DESCRIPTION VARCHAR(28))
+                                                                                                      *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> CREATE TABLE RESOURCES(RESOURCE_ID VARCHAR(30), NAME VARCHAR(20), QUANTITY INT,UNIT VARCHAR(20), LAST_UPDATE VARCHAR(20), DESCRIPTION VARCHAR(28));
+
+Table created.
+
+SQL> INSERT INTO RESOURCES VALUES(1256, 'BLANKETS', 20, 'PCS', '12-JAN-2025*, 'WINTER');
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> INSERT INTO RESOURCES VALUES(1256, 'BLANKETS', 20, 'PCS', '12-JAN-2025, 'WINTER');
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> INSERT INTO RESOURCES VALUES(1256, 'BLANKETS', 20, 'PCS', '12-JAN-2025', 'WINTER');
+
+1 row created.
+
+SQL> INSERT INTO RESOURCES VALUES(5623, 'RICE', 500, 'KG', '24-JUN-2025", 'BASMATI');
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> INSERT INTO RESOURCES VALUES(5623, 'RICE', 500, 'KG', '24-JUN-2025', 'BASMATI');
+
+1 row created.
+
+SQL> NSERT INTO RESOURCES VALUES(7563, "MEDICENS", 10, 'BOXES', '15-JUL-2025', 'FIRSTAID KIT');
+SP2-0734: unknown command beginning "NSERT INTO..." - rest of line ignored.
+SQL> INSERT INTO RESOURCES VALUES(7563, "MEDICENS", 10, 'BOXES', '15-JUL-2025', 'FIRSTAID KIT');
+INSERT INTO RESOURCES VALUES(7563, "MEDICENS", 10, 'BOXES', '15-JUL-2025', 'FIRSTAID KIT')
+                                   *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> INSERT INTO RESOURCES VALUES(7563, 'MEDICENS', 10, 'BOXES', '15-JUL-2025', 'FIRSTAID KIT');
+
+1 row created.
+
+SQL> INSERT INTO RESOURCES VALUES(4265, 'PILLOWS', 15, 'PCS', '23-FEB-2025', 'EMMA");
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> INSERT INTO RESOURCES VALUES(4265, 'PILLOWS', 15, 'PCS', '23-FEB-2025', 'EMMA');
+
+1 row created.
+
+SQL> INSERT INTO RESOURCES VALUES(2897, 'FANS', 20, 'PCS", '12-MAY-2025', 'CROMPTON');
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> INSERT INTO RESOURCES VALUES(2897, 'FANS', 20, 'PCS', '12-MAY-2025', 'CROMPTON');
+
+1 row created.
+
+SQL> SELECT*FROM RESOURCES;
+
+RESOURCE_ID                    NAME                   QUANTITY
+------------------------------ -------------------- ----------
+UNIT                 LAST_UPDATE          DESCRIPTION
+-------------------- -------------------- ----------------------------
+1256                           BLANKETS                     20
+PCS                  12-JAN-2025          WINTER
+
+5623                           RICE                        500
+KG                   24-JUN-2025          BASMATI
+
+7563                           MEDICENS                     10
+BOXES                15-JUL-2025          FIRSTAID KIT
+
+
+RESOURCE_ID                    NAME                   QUANTITY
+------------------------------ -------------------- ----------
+UNIT                 LAST_UPDATE          DESCRIPTION
+-------------------- -------------------- ----------------------------
+4265                           PILLOWS                      15
+PCS                  23-FEB-2025          EMMA
+
+2897                           FANS                         20
+PCS                  12-MAY-2025          CROMPTON
+
+
+SQL> SELECT NAME FROM DONAR
+  2  UNION ALL
+  3  SELECT NAME FROM RESOURCES;
+
+NAME
+--------------------
+KAYA
+MAYA
+TEJA
+MONICA
+KANYA
+BLANKETS
+RICE
+MEDICENS
+PILLOWS
+FANS
+
+10 rows selected.
+
+SQL> SELECT D.NAME AS DONAR_NAME, R.NAME AS RESOURCE_NAME
+  2  FROM DONAR D
+  3  CROSS JOIN RESOURCES R;
+
+DONAR_NAME           RESOURCE_NAME
+-------------------- --------------------
+KAYA                 BLANKETS
+KAYA                 RICE
+KAYA                 MEDICENS
+KAYA                 PILLOWS
+KAYA                 FANS
+MAYA                 BLANKETS
+MAYA                 RICE
+MAYA                 MEDICENS
+MAYA                 PILLOWS
+MAYA                 FANS
+TEJA                 BLANKETS
+
+DONAR_NAME           RESOURCE_NAME
+-------------------- --------------------
+TEJA                 RICE
+TEJA                 MEDICENS
+TEJA                 PILLOWS
+TEJA                 FANS
+MONICA               BLANKETS
+MONICA               RICE
+MONICA               MEDICENS
+MONICA               PILLOWS
+MONICA               FANS
+KANYA                BLANKETS
+KANYA                RICE
+
+DONAR_NAME           RESOURCE_NAME
+-------------------- --------------------
+KANYA                MEDICENS
+KANYA                PILLOWS
+KANYA                FANS
+
+25 rows selected.
+
+SQL> SELECT D.*
+  2  FROM DONAR D
+  3  INNER JOIN RESOURCES R ON D.NAME = R.NAME;
+
+no rows selected
+
+SQL> SELECT D.DONAR_ID, D.NAME AS DONAR_NAME, R.RESOURCE_ID, R.NAME AS RESOURCE_NAME, R.QUANTITY
+  2  FROM DONAR D
+  3  INNER JOIN RESOURCES R
+  4  ON D.NAME = R.NAME;
+
+no rows selected
+
+SQL> SELECT D.DONAR_ID, D.NAME AS DONAR_NAME, R.RESOURCE_ID, R.NAME AS RESOURCE_NAME
+  2  FROM DONAR D
+  3  LEFT JOIN RESOURCES R
+  4  ON D.NAME = R.NAME;
+
+DONAR_ID   DONAR_NAME           RESOURCE_ID
+---------- -------------------- ------------------------------
+RESOURCE_NAME
+--------------------
+78965      MONICA
+
+
+89061      MAYA
+
+
+56321      TEJA
+
+
+
+DONAR_ID   DONAR_NAME           RESOURCE_ID
+---------- -------------------- ------------------------------
+RESOURCE_NAME
+--------------------
+89663      KANYA
+
+
+42521      KAYA
+
+
+
+SQL>
+SQL> SELECT D.DONAR_ID, D.NAME AS DONAR_NAME, R.RESOURCE_ID, R.NAME AS RESOURCE_NAME
+  2  FROM DONAR D
+  3  RIGHT JOIN RESOURCES R
+  4  ON D.NAME = R.NAME;
+
+DONAR_ID   DONAR_NAME           RESOURCE_ID
+---------- -------------------- ------------------------------
+RESOURCE_NAME
+--------------------
+                                2897
+FANS
+
+                                1256
+BLANKETS
+
+                                7563
+MEDICENS
+
+
+DONAR_ID   DONAR_NAME           RESOURCE_ID
+---------- -------------------- ------------------------------
+RESOURCE_NAME
+--------------------
+                                4265
+PILLOWS
+
+                                5623
+RICE
+
+
+SQL> ^BSELECT D.DONAR_ID, D.NAME AS DONAR_NAME, R.RESOURCE_ID, R.NAME AS RESOURCE_NAME
+SP2-0734: unknown command beginning "☻SELECT D...." - rest of line ignored.
+SQL> FROM DONAR D
+SP2-0734: unknown command beginning "FROM DONAR..." - rest of line ignored.
+SQL> FULL OUTER JOIN RESOURCES R
+SP2-0734: unknown command beginning "FULL OUTER..." - rest of line ignored.
+SQL> ON D.NAME = R.NAME;
+SP2-0734: unknown command beginning "ON D.NAME ..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> SELECT D.DONAR_ID, D.NAME AS DONAR_NAME, R.RESOURCE_ID, R.NAME AS RESOURCE_NAME
+  2  FROM DONAR D
+  3  FULL OUTER JOIN RESOURCES R
+  4  ON D.NAME = R.NAME;
+
+DONAR_ID   DONAR_NAME           RESOURCE_ID
+---------- -------------------- ------------------------------
+RESOURCE_NAME
+--------------------
+42521      KAYA
+
+
+89061      MAYA
+
+
+56321      TEJA
+
+
+
+DONAR_ID   DONAR_NAME           RESOURCE_ID
+---------- -------------------- ------------------------------
+RESOURCE_NAME
+--------------------
+78965      MONICA
+
+
+89663      KANYA
+
+
+                                2897
+FANS
+
+
+DONAR_ID   DONAR_NAME           RESOURCE_ID
+---------- -------------------- ------------------------------
+RESOURCE_NAME
+--------------------
+                                1256
+BLANKETS
+
+                                7563
+MEDICENS
+
+                                4265
+PILLOWS
+
+
+DONAR_ID   DONAR_NAME           RESOURCE_ID
+---------- -------------------- ------------------------------
+RESOURCE_NAME
+--------------------
+                                5623
+RICE
+
+
+10 rows selected.
+
+SQL> SELECT D.NAME, R.RESOURCE_ID, R.QUANTITY
+  2  FROM DONAR D
+  3  JOIN RESOURCES R ON D.NAME = R.NAME
+  4  WHERE R.QUANTITY > 10;
+
+no rows selected
